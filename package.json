@@ -1,0 +1,30 @@
+{
+  "name": "proshop-v2",
+  "version": "1.0.1",
+  "description": "eCommerce application",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/piyush9910/proshop.git"
+  },
+  "author": "Piyush",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/piyush9910/proshop/issues"
+  },
+  "homepage": "https://github.com/piyush9910/proshop#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "nodemon": "^3.1.9"
+  }
+}
