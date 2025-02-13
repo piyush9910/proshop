@@ -21,7 +21,8 @@
   },
   "homepage": "https://github.com/piyush9910/proshop#readme",
   "dependencies": {
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "mongoose": "^8.10.0"
   },
   "devDependencies": {
     "concurrently": "^9.1.2",
