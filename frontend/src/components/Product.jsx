@@ -21,7 +21,12 @@ const Product = ({ product }) => {
             text={`${product.numReviews} reviews`}
           />
         </Card.Text>
-        <Card.Text as="h3">₹{product.price}</Card.Text>
+        <Card.Text as="h3">
+          ₹
+          {new Intl.NumberFormat('en-IN', { maximumFractionDigits: 2 }).format(
+            product.price
+          )}
+        </Card.Text>
       </Card.Body>
     </Card>
   );
