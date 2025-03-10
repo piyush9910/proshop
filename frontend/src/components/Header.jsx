@@ -1,11 +1,17 @@
 import React from 'react';
-import { Navbar, Nav, Container, Badge } from 'react-bootstrap';
+import { Navbar, Nav, Container, Badge, NavDropdown } from 'react-bootstrap';
 import { FaShoppingCart } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import logo from '../assets/logo.png';
 
 const Header = () => {
   const { cartItems } = useSelector((state) => state.cart);
+  const { userInfo } = useSelector((state) => state.auth);
+
+  const logoutHandler = () => {
+    console.log('Logout');
+  };
+
   return (
     <header>
       <Navbar bg="dark" variant="dark" expand="md" collapseOnSelect>
@@ -15,19 +21,32 @@ const Header = () => {
             ProShop
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="ms-auto">
-              <Nav.Link href="/cart">
-                <FaShoppingCart /> Cart
-                {cartItems.length > 0 && (
-                  <Badge pill bg="success" style={{ marginLeft: '5px' }}>
-                    {cartItems.reduce((acc, item) => acc + item.qty, 0)}
-                  </Badge>
-                )}
-              </Nav.Link>
-              <Nav.Link href="/login">Sign In</Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
+          {userInfo ? (
+            <NavDropdown
+              title={userInfo.name}
+              id="username"
+              style={{ color: 'white' }}
+            >
+              <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
+              <NavDropdown.Item onClick={logoutHandler}>
+                Logout
+              </NavDropdown.Item>
+            </NavDropdown>
+          ) : (
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="ms-auto">
+                <Nav.Link href="/cart">
+                  <FaShoppingCart /> Cart
+                  {cartItems.length > 0 && (
+                    <Badge pill bg="success" style={{ marginLeft: '5px' }}>
+                      {cartItems.reduce((acc, item) => acc + item.qty, 0)}
+                    </Badge>
+                  )}
+                </Nav.Link>
+                <Nav.Link href="/login">Sign In</Nav.Link>
+              </Nav>
+            </Navbar.Collapse>
+          )}
         </Container>
       </Navbar>
     </header>
